@@ -31,7 +31,9 @@ class Config {
     this.adaptiveIconMonochrome,
     this.minSdkAndroid = constants.androidDefaultAndroidMinSDK,
     this.removeAlphaIOS = false,
+    this.removeAlphaAndroid = false,
     this.backgroundColorIOS = '#ffffff',
+    this.backgroundColorAndroid = '#ffffff',
     this.webConfig,
     this.windowsConfig,
     this.macOSConfig,
@@ -145,6 +147,14 @@ class Config {
   /// IOS background_color_ios
   @JsonKey(name: 'background_color_ios')
   final String backgroundColorIOS;
+
+  /// Android remove_alpha_android
+  @JsonKey(name: 'remove_alpha_android')
+  final bool removeAlphaAndroid;
+
+  /// Android background_color_android
+  @JsonKey(name: 'background_color_android')
+  final String backgroundColorAndroid;
 
   /// Web platform config
   @JsonKey(name: 'web')

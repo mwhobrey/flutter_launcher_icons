@@ -64,6 +64,21 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         returnValue: '',
         returnValueForMissingStub: '',
       ) as String);
+
+  @override
+  bool get removeAlphaAndroid => (super.noSuchMethod(
+        Invocation.getter(#removeAlphaAndroid),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  String get backgroundColorAndroid => (super.noSuchMethod(
+        Invocation.getter(#backgroundColorAndroid),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
   @override
   bool get hasAndroidAdaptiveConfig => (super.noSuchMethod(
         Invocation.getter(#hasAndroidAdaptiveConfig),

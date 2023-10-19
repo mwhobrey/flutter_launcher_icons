@@ -7,6 +7,7 @@ import 'package:flutter_launcher_icons/constants.dart';
 import 'package:flutter_launcher_icons/constants.dart' as constants;
 import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:flutter_launcher_icons/utils.dart' as utils;
+import 'package:flutter_launcher_icons/utils.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart' as xml_template;
 import 'package:image/image.dart';
 import 'package:path/path.dart' as path;
@@ -52,9 +53,18 @@ void createDefaultIcons(
   if (filePath == null) {
     throw const InvalidConfigException(errorMissingImagePath);
   }
-  final Image? image = utils.decodeImageFile(filePath);
+  Image? image = utils.decodeImageFile(filePath);
   if (image == null) {
     return;
+  }
+  if (config.removeAlphaAndroid && image.hasAlpha) {
+    final backgroundColor = getBackgroundColor(config, MobilePlatform.android);
+    final pixel = image.getPixel(0, 0);
+    do {
+      pixel.set(alphaBlend(pixel, backgroundColor));
+    } while (pixel.moveNext());
+
+    image = image.convert(numChannels: 3);
   }
   final File androidManifestFile = File(constants.androidManifestFile);
   if (config.isCustomAndroidFile) {

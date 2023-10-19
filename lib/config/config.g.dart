@@ -29,8 +29,12 @@ Config _$ConfigFromJson(Map json) => $checkedCreate(
               (v) => v as int? ?? constants.androidDefaultAndroidMinSDK),
           removeAlphaIOS:
               $checkedConvert('remove_alpha_ios', (v) => v as bool? ?? false),
+          removeAlphaAndroid: $checkedConvert(
+              'remove_alpha_android', (v) => v as bool? ?? false),
           backgroundColorIOS: $checkedConvert(
               'background_color_ios', (v) => v as String? ?? '#ffffff'),
+          backgroundColorAndroid: $checkedConvert(
+              'background_color_android', (v) => v as String? ?? '#ffffff'),
           webConfig: $checkedConvert(
               'web', (v) => v == null ? null : WebConfig.fromJson(v as Map)),
           windowsConfig: $checkedConvert('windows',
@@ -50,7 +54,9 @@ Config _$ConfigFromJson(Map json) => $checkedCreate(
         'adaptiveIconMonochrome': 'adaptive_icon_monochrome',
         'minSdkAndroid': 'min_sdk_android',
         'removeAlphaIOS': 'remove_alpha_ios',
+        'removeAlphaAndroid': 'remove_alpha_android',
         'backgroundColorIOS': 'background_color_ios',
+        'backgroundColorAndroid': 'background_color_android',
         'webConfig': 'web',
         'windowsConfig': 'windows',
         'macOSConfig': 'macos'
@@ -70,6 +76,8 @@ Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'min_sdk_android': instance.minSdkAndroid,
       'remove_alpha_ios': instance.removeAlphaIOS,
       'background_color_ios': instance.backgroundColorIOS,
+      'remove_alpha_android': instance.removeAlphaAndroid,
+      'background_color_android': instance.backgroundColorAndroid,
       'web': instance.webConfig,
       'windows': instance.windowsConfig,
       'macos': instance.macOSConfig,
