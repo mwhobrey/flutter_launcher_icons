@@ -16,7 +16,6 @@ Image createResizedImage(int iconSize, Image image) {
       width: iconSize,
       height: iconSize,
       interpolation: Interpolation.average,
-      backgroundColor: image.backgroundColor,
     );
   } else {
     return copyResize(
@@ -24,18 +23,27 @@ Image createResizedImage(int iconSize, Image image) {
       width: iconSize,
       height: iconSize,
       interpolation: Interpolation.linear,
-      backgroundColor: image.backgroundColor,
     );
   }
 }
 
-Image createResizedForegroundImage(int iconSize, Image image, double adaptivePaddingGeneration) {
-  return createResizedImage(iconSize, copyExpandCanvas(
+Image createResizedForegroundImage(int iconSize, Image image, double paddingGeneration) {
+  final newWidth = ((image.height * paddingGeneration) + image.height).toInt();
+  final newHeight = ((image.height * paddingGeneration) + image.height).toInt();
+
+  final newImage = Image(
+    height: newHeight,
+    width: newWidth,
+    numChannels: 4,
+  );
+
+  final _ = copyExpandCanvas(
     image,
-    newHeight: ((image.height * adaptivePaddingGeneration) + image.height).toInt(),
-    newWidth: ((image.width * adaptivePaddingGeneration) + image.width).toInt(),
-    backgroundColor: image.backgroundColor
-  ),);
+    newHeight: newHeight,
+    newWidth: newWidth,
+    toImage: newImage,
+  );
+  return createResizedImage(iconSize, newImage);
 }
 
 void printStatus(String message) {
