@@ -23,6 +23,7 @@ const String androidFlutterGardlePath =
 const int androidDefaultAndroidMinSDK = 21;
 const String androidFileName = 'ic_launcher.png';
 const String androidAdaptiveForegroundFileName = 'ic_launcher_foreground.png';
+const String notificationFileName = 'ic_notification_icon.png';
 const String androidAdaptiveBackgroundFileName = 'ic_launcher_background.png';
 const String androidAdaptiveMonochromeFileName = 'ic_launcher_monochrome.png';
 String androidAdaptiveXmlFolder(String? flavor) =>

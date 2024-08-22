@@ -153,6 +153,9 @@ void createIconsFromConfig(
       flavor,
     );
   }
+  if (flutterConfigs.hasAndroidNotificationConfig) {
+    android_launcher_icons.createNotificationIcons(flutterConfigs, flavor);
+  }
   if (flutterConfigs.isNeedingNewIOSIcon) {
     ios_launcher_icons.createIcons(flutterConfigs, flavor);
   }

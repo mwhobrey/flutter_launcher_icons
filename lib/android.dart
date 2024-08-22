@@ -26,6 +26,14 @@ final List<AndroidIconTemplate> adaptiveForegroundIcons = <AndroidIconTemplate>[
   AndroidIconTemplate(directoryName: 'drawable-xxxhdpi', size: 432),
 ];
 
+final List<AndroidIconTemplate> notificationIcons = <AndroidIconTemplate>[
+  AndroidIconTemplate(directoryName: 'drawable-mdpi', size: 24),
+  AndroidIconTemplate(directoryName: 'drawable-hdpi', size: 36),
+  AndroidIconTemplate(directoryName: 'drawable-xhdpi', size: 48),
+  AndroidIconTemplate(directoryName: 'drawable-xxhdpi', size: 72),
+  AndroidIconTemplate(directoryName: 'drawable-xxxhdpi', size: 96),
+];
+
 List<AndroidIconTemplate> androidIcons = <AndroidIconTemplate>[
   AndroidIconTemplate(directoryName: 'mipmap-mdpi', size: 48),
   AndroidIconTemplate(directoryName: 'mipmap-hdpi', size: 72),
@@ -197,6 +205,33 @@ void createMipmapXmlFile(
   mipmapXmlFile.writeAsStringSync(
     xml_template.mipmapXmlFile.replaceAll('{{CONTENT}}', xmlContent),
   );
+}
+
+void createNotificationIcons(
+    Config config,
+    String? flavor,
+) {
+  utils.printStatus('Creating notification icons Android');
+
+  // Retrieve the necessary Flutter Launcher Icons configuration from the pubspec.yaml file
+  final String? notificationIconPath = config.notificationIconPathAndroid;
+  if (notificationIconPath == null) {
+    throw const InvalidConfigException(errorMissingImagePath);
+  }
+  final Image? notificationIcon = utils.decodeImageFile(notificationIconPath);
+  if (notificationIcon == null) {
+    return;
+  }
+
+  // Create adaptive icon foreground images
+  for (AndroidIconTemplate androidIcon in notificationIcons) {
+    overwriteExistingIcons(
+      androidIcon,
+      notificationIcon,
+      constants.notificationFileName,
+      flavor,
+    );
+  }
 }
 
 /// Retrieves the colors.xml file for the project.

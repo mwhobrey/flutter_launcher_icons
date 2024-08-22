@@ -25,6 +25,7 @@ class Config {
     this.ios = false,
     this.imagePathAndroid,
     this.imagePathIOS,
+    this.notificationIconPathAndroid,
     this.adaptiveIconForeground,
     this.adaptiveIconBackground,
     this.adaptiveIconMonochrome,
@@ -117,7 +118,11 @@ class Config {
   @JsonKey(name: 'image_path_ios')
   final String? imagePathIOS;
 
-  /// android adaptive_icon_foreground image
+  /// Android notification icon path
+  @JsonKey(name: 'notification_icon_path_android')
+  final String? notificationIconPathAndroid;
+
+  /// android adaptive icon foreground image
   @JsonKey(name: 'adaptive_icon_foreground')
   final String? adaptiveIconForeground;
 
@@ -166,6 +171,10 @@ class Config {
   bool get hasAndroidAdaptiveMonochromeConfig {
     return isNeedingNewAndroidIcon && adaptiveIconMonochrome != null;
   }
+
+  bool get hasAndroidNotificationConfig =>
+      isNeedingNewAndroidIcon &&
+          notificationIconPathAndroid != null;
 
   /// Checks if contains any platform config
   bool get hasPlatformConfig {

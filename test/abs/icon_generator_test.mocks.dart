@@ -42,11 +42,13 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         Invocation.getter(#minSdkAndroid),
         returnValue: 0,
       ) as int);
+
   @override
   bool get removeAlphaIOS => (super.noSuchMethod(
         Invocation.getter(#removeAlphaIOS),
         returnValue: false,
       ) as bool);
+
   @override
   String get backgroundColorIOS => (super.noSuchMethod(
         Invocation.getter(#backgroundColorIOS),
@@ -57,6 +59,13 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         Invocation.getter(#hasAndroidAdaptiveConfig),
         returnValue: false,
       ) as bool);
+
+  @override
+  bool get hasAndroidNotificationConfig => (super.noSuchMethod(
+        Invocation.getter(#hasAndroidNotificationConfig),
+        returnValue: false,
+      ) as bool);
+
   @override
   bool get hasAndroidAdaptiveMonochromeConfig => (super.noSuchMethod(
         Invocation.getter(#hasAndroidAdaptiveMonochromeConfig),
@@ -67,36 +76,43 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         Invocation.getter(#hasPlatformConfig),
         returnValue: false,
       ) as bool);
+
   @override
   bool get hasWebConfig => (super.noSuchMethod(
         Invocation.getter(#hasWebConfig),
         returnValue: false,
       ) as bool);
+
   @override
   bool get hasWindowsConfig => (super.noSuchMethod(
         Invocation.getter(#hasWindowsConfig),
         returnValue: false,
       ) as bool);
+
   @override
   bool get hasMacOSConfig => (super.noSuchMethod(
         Invocation.getter(#hasMacOSConfig),
         returnValue: false,
       ) as bool);
+
   @override
   bool get isCustomAndroidFile => (super.noSuchMethod(
         Invocation.getter(#isCustomAndroidFile),
         returnValue: false,
       ) as bool);
+
   @override
   bool get isNeedingNewAndroidIcon => (super.noSuchMethod(
         Invocation.getter(#isNeedingNewAndroidIcon),
         returnValue: false,
       ) as bool);
+
   @override
   bool get isNeedingNewIOSIcon => (super.noSuchMethod(
         Invocation.getter(#isNeedingNewIOSIcon),
         returnValue: false,
       ) as bool);
+
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
         Invocation.method(
@@ -123,11 +139,13 @@ class MockIconGenerator extends _i1.Mock implements _i2.IconGenerator {
           Invocation.getter(#context),
         ),
       ) as _i2.IconGeneratorContext);
+
   @override
   String get platformName => (super.noSuchMethod(
         Invocation.getter(#platformName),
         returnValue: '',
       ) as String);
+
   @override
   void createIcons() => super.noSuchMethod(
         Invocation.method(
@@ -136,6 +154,7 @@ class MockIconGenerator extends _i1.Mock implements _i2.IconGenerator {
         ),
         returnValueForMissingStub: null,
       );
+
   @override
   bool validateRequirements() => (super.noSuchMethod(
         Invocation.method(

@@ -50,12 +50,14 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         returnValue: 0,
         returnValueForMissingStub: 0,
       ) as int);
+
   @override
   bool get removeAlphaIOS => (super.noSuchMethod(
         Invocation.getter(#removeAlphaIOS),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   String get backgroundColorIOS => (super.noSuchMethod(
         Invocation.getter(#backgroundColorIOS),
@@ -68,6 +70,14 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
+  @override
+  bool get hasAndroidNotificationConfig => (super.noSuchMethod(
+        Invocation.getter(#hasAndroidNotificationConfig),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
   @override
   bool get hasAndroidAdaptiveMonochromeConfig => (super.noSuchMethod(
         Invocation.getter(#hasAndroidAdaptiveMonochromeConfig),
@@ -80,42 +90,49 @@ class MockConfig extends _i1.Mock implements _i3.Config {
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get hasWebConfig => (super.noSuchMethod(
         Invocation.getter(#hasWebConfig),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get hasWindowsConfig => (super.noSuchMethod(
         Invocation.getter(#hasWindowsConfig),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get hasMacOSConfig => (super.noSuchMethod(
         Invocation.getter(#hasMacOSConfig),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get isCustomAndroidFile => (super.noSuchMethod(
         Invocation.getter(#isCustomAndroidFile),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get isNeedingNewAndroidIcon => (super.noSuchMethod(
         Invocation.getter(#isNeedingNewAndroidIcon),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   bool get isNeedingNewIOSIcon => (super.noSuchMethod(
         Invocation.getter(#isNeedingNewIOSIcon),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
         Invocation.method(
@@ -137,6 +154,7 @@ class MockMacOSConfig extends _i1.Mock implements _i4.MacOSConfig {
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
         Invocation.method(
@@ -158,6 +176,7 @@ class MockFLILogger extends _i1.Mock implements _i5.FLILogger {
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
   @override
   _i2.Logger get rawLogger => (super.noSuchMethod(
         Invocation.getter(#rawLogger),
@@ -170,6 +189,7 @@ class MockFLILogger extends _i1.Mock implements _i5.FLILogger {
           Invocation.getter(#rawLogger),
         ),
       ) as _i2.Logger);
+
   @override
   void error(Object? message) => super.noSuchMethod(
         Invocation.method(
@@ -178,6 +198,7 @@ class MockFLILogger extends _i1.Mock implements _i5.FLILogger {
         ),
         returnValueForMissingStub: null,
       );
+
   @override
   void verbose(Object? message) => super.noSuchMethod(
         Invocation.method(
@@ -186,6 +207,7 @@ class MockFLILogger extends _i1.Mock implements _i5.FLILogger {
         ),
         returnValueForMissingStub: null,
       );
+
   @override
   void info(Object? message) => super.noSuchMethod(
         Invocation.method(
@@ -194,6 +216,7 @@ class MockFLILogger extends _i1.Mock implements _i5.FLILogger {
         ),
         returnValueForMissingStub: null,
       );
+
   @override
   _i2.Progress progress(String? message) => (super.noSuchMethod(
         Invocation.method(
