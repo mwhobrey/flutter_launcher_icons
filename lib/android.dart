@@ -125,11 +125,12 @@ void createAdaptiveIcons(
 
   // Create adaptive icon foreground images
   for (AndroidIconTemplate androidIcon in adaptiveForegroundIcons) {
-    overwriteExistingIcons(
+    createAdaptiveForegroundImage(
       androidIcon,
       foregroundImage,
       constants.androidAdaptiveForegroundFileName,
       flavor,
+      backgroundConfig,
     );
   }
 
@@ -143,6 +144,71 @@ void createAdaptiveIcons(
   } else {
     updateColorsXmlFile(backgroundConfig, flavor);
   }
+}
+
+ColorUint8 rgbaFromHex(String hexColor) {
+  // Remove the '#' if present
+  hexColor = hexColor.replaceAll('#', '');
+
+  // Handle colors with and without transparency
+  int alpha = 255; // Default to fully opaque
+  if (hexColor.length == 8) {
+    alpha = int.parse(hexColor.substring(0, 2), radix: 16);
+    hexColor = hexColor.substring(2);
+  }
+
+  // Parse the RGB components
+  final red = int.parse(hexColor.substring(0, 2), radix: 16);
+  final green = int.parse(hexColor.substring(2, 4), radix: 16);
+  final blue = int.parse(hexColor.substring(4, 6), radix: 16);
+
+  return ColorUint8.rgba(red, green, blue, alpha);
+}
+
+void createAdaptiveForegroundImage(
+  AndroidIconTemplate template,
+  Image image,
+  String filename,
+  String? flavor,
+  String backgroundColor,
+) {
+  final int targetSize = template.size;
+  final int padding = (targetSize * 0.1714).round(); // 18% padding
+  final int imageSize = targetSize - (padding * 2);
+
+  final Image resizedImage = copyResize(
+    image,
+    width: imageSize,
+    height: imageSize,
+    interpolation: Interpolation.cubic,
+  );
+
+  final Image newFile = Image(width: targetSize, height: targetSize);
+
+  // Fill the background with the specified color
+  final bgColor = rgbaFromHex(backgroundColor);
+  for (int y = 0; y < targetSize; y++) {
+    for (int x = 0; x < targetSize; x++) {
+      newFile.setPixel(x, y, bgColor);
+    }
+  }
+
+  // Center the resized image on the new canvas
+  compositeImage(
+    newFile,
+    resizedImage,
+    dstX: padding,
+    dstY: padding,
+  );
+
+  final file = File(
+    constants.androidResFolder(flavor) +
+        template.directoryName +
+        '/' +
+        filename,
+  );
+  file.createSync(recursive: true);
+  file.writeAsBytesSync(encodePng(newFile));
 }
 
 void createAdaptiveMonochromeIcons(
@@ -218,8 +284,8 @@ void createMipmapXmlFile(
 }
 
 void createNotificationIcons(
-    Config config,
-    String? flavor,
+  Config config,
+  String? flavor,
 ) {
   utils.printStatus('Creating notification icons Android');
 
